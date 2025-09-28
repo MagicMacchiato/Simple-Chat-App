@@ -52,6 +52,8 @@ class Logger{
             printLog(buff, LoggerLevel::error);
         }
 
+        void setLoggerLevel(const LoggerLevel loggerLevel);
+
     private:
         std::string loggerName;
         LoggerLevel loggerLevel;
@@ -71,16 +73,14 @@ class Logger{
             auto specifier_pos = str_ref.find(FORMAT_SPECIFIER);
 
             if(specifier_pos != std::string::npos){
-                builder<<str_ref.substr(0, (size_t)specifier_pos)<<arg;
+                builder<<str_ref.substr(0, specifier_pos)<<arg<<str_ref.substr(specifier_pos + 2);
             }
-            else{
-                builder<<str_ref;
-            }
+
 
             return builder.str();
         }
 
-        std::string buildFormatString(const std::string& message);
+        std::string buildFormatString(std::string&& message);
 
 };
 

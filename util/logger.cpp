@@ -8,6 +8,11 @@ Logger::Logger(const std::string& loggerName, const LoggerLevel loggerLevel){
 }
 
 
+void Logger::setLoggerLevel(const LoggerLevel loggerLevel){
+    this->loggerLevel = loggerLevel;
+}
+
+
 //helper functions
 
 void Logger::printLog(const std::string& message, const LoggerLevel LoggerLevel){
@@ -48,6 +53,6 @@ std::string Logger::getLoggerLevelTag(const LoggerLevel LoggerLevel){
 }
 
 
-std::string Logger::buildFormatString(const std::string& message){
+std::string Logger::buildFormatString(std::string&& message){
     return message;
 }
